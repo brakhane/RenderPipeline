@@ -1,103 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Panda3D Render Pipeline : Complete deferred render pipeline for Panda3D" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Panda3D Render Pipeline by tobspr</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Panda3D Render Pipeline</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>Panda3D Render Pipeline</h1>
+        <p>Complete deferred render pipeline for Panda3D</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/tobspr/RenderPipeline">View on GitHub</a>
+        <p class="view"><a href="https://github.com/tobspr/RenderPipeline">View the Project on GitHub <small>tobspr/RenderPipeline</small></a></p>
 
-          <h1 id="project_title">Panda3D Render Pipeline</h1>
-          <h2 id="project_tagline">Complete deferred render pipeline for Panda3D</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tobspr/RenderPipeline/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tobspr/RenderPipeline/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+        <ul>
+          <li><a href="https://github.com/tobspr/RenderPipeline/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tobspr/RenderPipeline/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tobspr/RenderPipeline">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a name="deferred-render-pipeline" class="anchor" href="#deferred-render-pipeline"><span class="octicon octicon-link"></span></a>Deferred Render Pipeline</h2>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="deferred-render-pipeline" class="anchor" href="#deferred-render-pipeline"><span class="octicon octicon-link"></span></a>Deferred Render Pipeline</h1>
+<p>This is my deferred render pipeline, implemented in Panda3D. This 
+pipeline aims to handle the complete graphics pipeline, giving the user the ability to focus on making the game, and not the graphics.</p>
 
-<p>Complete deferred render pipeline for panda3d (Work in progress)</p>
+<p>Screenshot Thread: <a href="http://www.panda3d.org/forums/viewtopic.php?f=6&amp;t=17050">http://www.panda3d.org/forums/viewtopic.php?f=6&amp;t=17050</a></p>
+
+<p>This pipeline is still in developement, feel free to join :)
+For questions &amp; suggestions you can find me at #panda3d on freenode.</p>
+
+<p>Thanks especially to rdb and all the others for support &amp; help!</p>
 
 <h3>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features:</h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<p>You can find the wiki &amp; instructions how to setup the pipeline at
+<a href="https://github.com/tobspr/RenderPipeline/wiki">https://github.com/tobspr/RenderPipeline/wiki</a></p>
+
+<h3>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
 <h5>
-<a name="deferred-rendering-obviously" class="anchor" href="#deferred-rendering-obviously"><span class="octicon octicon-link"></span></a>Deferred rendering (obviously)</h5>
+<a name="deferred-rendering" class="anchor" href="#deferred-rendering"><span class="octicon octicon-link"></span></a>Deferred rendering</h5>
 
 <ul>
-<li>Still allows some objects to have forward passes</li>
+<li>Separate transparency and forward pass, too </li>
 </ul><h5>
-<a name="early-z" class="anchor" href="#early-z"><span class="octicon octicon-link"></span></a>Early-Z</h5>
+<a name="occlusion" class="anchor" href="#occlusion"><span class="octicon octicon-link"></span></a>Occlusion</h5>
 
 <ul>
-<li>Pre-Renders depth to avoid overdraw</li>
+<li>SSDO, SAO and HBAO for high frequency AO</li>
+<li>Also voxel traced AO and GI for medium/low frequency AO</li>
 </ul><h5>
-<a name="ssdo" class="anchor" href="#ssdo"><span class="octicon octicon-link"></span></a>SSDO</h5>
+<a name="global-illumination" class="anchor" href="#global-illumination"><span class="octicon octicon-link"></span></a>Global Illumination</h5>
 
 <ul>
-<li>with one bounce for indirect lighting / color bleeding</li>
-</ul><h5>
-<a name="pssm-cloud-shadows-large-terrain-shadows" class="anchor" href="#pssm-cloud-shadows-large-terrain-shadows"><span class="octicon octicon-link"></span></a>PSSM, Cloud Shadows, Large Terrain Shadows</h5>
+<li>Cone traced Global Illumination</li>
+<li>Also cone traced Specular Reflections
 
 <ul>
-<li>
-<del>complete lighting and shadows via compute shader</del>
-
-<ul>
-<li>Too slow, replaced by regular fragment shaders</li>
+<li>Better results than screen space reflections</li>
+<li>Blurred reflections are cheap</li>
 </ul>
 </li>
 </ul><h5>
-<a name="atmospheric-scattering--volumetric-fog" class="anchor" href="#atmospheric-scattering--volumetric-fog"><span class="octicon octicon-link"></span></a>Atmospheric Scattering &amp; Volumetric Fog</h5>
+<a name="dynamic-scene-voxelization" class="anchor" href="#dynamic-scene-voxelization"><span class="octicon octicon-link"></span></a>Dynamic Scene Voxelization</h5>
 
-<h5>
+<ul>
+<li>Used for multiple effects like GI, or specular reflections</li>
+<li>Allows correct specular refletions, even if ray is outside of view</li>
+</ul><h5>
+<a name="pssm" class="anchor" href="#pssm"><span class="octicon octicon-link"></span></a>PSSM</h5>
+
+<ul>
+<li>For directional lights, logarithmic splitting</li>
+<li>Might support depth dependent splitting at some time</li>
+</ul><h5>
+<a name="soft-shadow-penumbras" class="anchor" href="#soft-shadow-penumbras"><span class="octicon octicon-link"></span></a>Soft Shadow Penumbras</h5>
+
+<ul>
+<li>With variance shadow maps (VSM)</li>
+</ul><h5>
+<a name="sssss" class="anchor" href="#sssss"><span class="octicon octicon-link"></span></a>SSSSS</h5>
+
+<ul>
+<li>Screen space subsurface scattering</li>
+<li>Based on pregenerated light transport map</li>
+</ul><h5>
 <a name="multi-hemisphere-skybox" class="anchor" href="#multi-hemisphere-skybox"><span class="octicon octicon-link"></span></a>Multi-Hemisphere-Skybox</h5>
 
 <h5>
+<a name="atmospheric-scattering" class="anchor" href="#atmospheric-scattering"><span class="octicon octicon-link"></span></a>Atmospheric Scattering</h5>
+
+<ul>
+<li>Based on the work of Eric Bruneton, but improved and adapted for non-spheres</li>
+</ul><h5>
+<a name="shadows" class="anchor" href="#shadows"><span class="octicon octicon-link"></span></a>Shadows</h5>
+
+<ul>
+<li>Shadow updates delayed over multiple frames</li>
+<li>Shadow atlas, also dynamic resolution adaption</li>
+</ul><h5>
 <a name="lighting" class="anchor" href="#lighting"><span class="octicon octicon-link"></span></a>Lighting:</h5>
 
 <ul>
-<li>
-<p>Point Lights</p>
+<li>Point Lights
 
 <ul>
-<li>Either shadow casting or not</li>
-<li>When shadow casting, only use 2 perspectives
+<li>Shadows via cubemap</li>
+</ul>
+</li>
+<li>Directional Lights
 
 <ul>
-<li>Parabolic mapping</li>
+<li>PSSM Shadows, see above</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>
-<p>Directional Lights</p>
-
-<ul>
-<li>Sun only</li>
-<li>PSSM Shadows</li>
-</ul>
-</li>
-<li>
-<p>Ambient Lights</p>
+<li>Ambient Lights
 
 <ul>
 <li>Darken or Bright
@@ -108,12 +137,10 @@
 </li>
 </ul>
 </li>
-<li>
-<p>Projector Lights</p>
+<li>Projector Lights
 
 <ul>
-<li>Either shadow casting or not</li>
-<li>Only 1 perspective</li>
+<li>Like a perspective lens</li>
 <li>Projection texture
 
 <ul>
@@ -122,57 +149,23 @@
 </li>
 </ul>
 </li>
-<li>
-<p>Area Lights</p>
+<li>Area Lights
 
 <ul>
-<li>Caster is a rectangle
-
-<ul>
-<li>Orthographic Lens</li>
-</ul>
-</li>
+<li>Caster is a rectangle</li>
 <li>Also supports projection texture</li>
-<li>Maybe Cone-Mapping</li>
+<li>Shadows are computed by cone tracing (see GI)</li>
 </ul>
 </li>
 </ul><h5>
 <a name="physically-based-shading--lighting" class="anchor" href="#physically-based-shading--lighting"><span class="octicon octicon-link"></span></a>Physically based shading / lighting</h5>
 
 <h5>
-<a name="precomputed-hdr-environment-probes" class="anchor" href="#precomputed-hdr-environment-probes"><span class="octicon octicon-link"></span></a>Precomputed HDR environment probes</h5>
-
-<ul>
-<li>Only in areas where reflective materials are used
-
-<ul>
-<li>and SSLR does not work well for the material
-
-<ul>
-<li>like water patches</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Image based lighting</li>
-</ul><h5>
-<a name="dynamic-reflections" class="anchor" href="#dynamic-reflections"><span class="octicon octicon-link"></span></a>Dynamic reflections</h5>
-
-<ul>
-<li>Screen Space Local Reflections</li>
-<li>For specular materials</li>
-<li>Cheapest solution for reflections</li>
-</ul><h5>
-<a name="dynamic-cubemaps" class="anchor" href="#dynamic-cubemaps"><span class="octicon octicon-link"></span></a>Dynamic cubemaps</h5>
-
-<ul>
-<li>rare usage, because of performance</li>
-<li>Render only 2 perspectives, parabolic mapping</li>
-<li>Not updated every frame</li>
-</ul><h5>
 <a name="tone-mapping-hdr" class="anchor" href="#tone-mapping-hdr"><span class="octicon octicon-link"></span></a>Tone mapping (HDR)</h5>
 
-<h5>
+<ul>
+<li>Also artist controlled color correction</li>
+</ul><h5>
 <a name="blur" class="anchor" href="#blur"><span class="octicon octicon-link"></span></a>Blur</h5>
 
 <ul>
@@ -184,31 +177,19 @@
 <li>Varying radius (DOF)</li>
 </ul>
 </li>
+<li>Maybe Bokeh</li>
 </ul><h5>
-<a name="tesselation-shader" class="anchor" href="#tesselation-shader"><span class="octicon octicon-link"></span></a>Tesselation Shader</h5>
+<a name="tesselation-shader-displacement" class="anchor" href="#tesselation-shader-displacement"><span class="octicon octicon-link"></span></a>Tesselation Shader displacement</h5>
 
-<ul>
-<li>Based on displacement map, or detail normals</li>
-<li>Height stored in z component of normalmap</li>
-</ul><h5>
-<a name="bokeh-dof" class="anchor" href="#bokeh-dof"><span class="octicon octicon-link"></span></a>Bokeh DOF</h5>
-
-<ul>
-<li>In combination with blur</li>
-</ul><h5>
+<h5>
 <a name="approximated-chromatic-aberration" class="anchor" href="#approximated-chromatic-aberration"><span class="octicon octicon-link"></span></a>Approximated Chromatic Aberration</h5>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Panda3D Render Pipeline maintained by <a href="https://github.com/tobspr">tobspr</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tobspr">tobspr</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
   </body>
 </html>
